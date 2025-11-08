@@ -37,6 +37,45 @@ copy Telcom_Customer_Churn_Class\.env.example Telcom_Customer_Churn_Class\.env
 ```
     Fill in any required values (e.g. SECRET_KEY_TOKEN).
 
+
+### Docker Deployment
+
+
+```bash
+# Build the Docker image
+docker build -t telcom-churn-api .
+
+# Run the container
+docker run -d -p 8000:8000 telcom-churn-api
+```
+#### Example API Request
+```bash
+curl -X POST "http://localhost:8000/predict" \
+     -H "Content-Type: application/json" \
+     -d '{
+           "gender": "Male",
+           "SeniorCitizen": 0,
+           "Partner": "Yes",
+           "Dependents": "No",
+           "tenure": 72,
+           "PhoneService": "Yes",
+           "MultipleLines": "Yes",
+           "InternetService": "DSL",
+           "OnlineSecurity": "Yes",
+           "OnlineBackup": "Yes",
+           "DeviceProtection": "Yes",
+           "TechSupport": "Yes",
+           "StreamingTV": "Yes",
+           "StreamingMovies": "Yes",
+           "Contract": "Two year",
+           "PaperlessBilling": "Yes",
+           "PaymentMethod": "Electronic check",
+           "MonthlyCharges": 89.85,
+           "TotalCharges": 6450.4
+         }'
+```
+
+
 ### Running the API (recommended)  
 
 1. Change directory into the project package (important to avoid import errors):
@@ -55,6 +94,9 @@ uvicorn main:app --reload
 uvicorn Telcom_Customer_Churn_Class.main:app --reload
 ```
 ` Note: running from the package folder avoids common "No module named 'utils'" import errors.`
+
+
+
 
 ### API usage
 

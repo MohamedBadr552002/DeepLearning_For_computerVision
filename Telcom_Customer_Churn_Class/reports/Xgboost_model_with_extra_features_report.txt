@@ -1,7 +1,7 @@
 Xgboost - Training Classification Report
               precision    recall  f1-score   support
 
-           0       0.88      0.87      0.87      4139
+           0       0.88      0.87      0.88      4139
            1       0.82      0.83      0.82      2897
 
     accuracy                           0.85      7036
@@ -16,10 +16,10 @@ Xgboost - Testing Classification Report
            1       0.59      0.65      0.62       374
 
     accuracy                           0.79      1409
-   macro avg       0.73      0.74      0.73      1409
-weighted avg       0.79      0.79      0.79      1409
+   macro avg       0.73      0.74      0.74      1409
+weighted avg       0.80      0.79      0.79      1409
 
 
 --------------------------------------------------------
-The f1_score using Xgboost model for Training Dataset is 82.264
-The f1_score using Xgboost model for Testing Dataset is 61.735
+The f1_score using Xgboost model for Training Dataset is 82.428
+The f1_score using Xgboost model for Testing Dataset is 61.929

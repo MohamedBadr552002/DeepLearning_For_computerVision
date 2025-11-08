@@ -19,3 +19,6 @@ MODELS_FOLDER_PATH = os.path.join(BASE_DIR, "Models")
 # Models
 preprocessor = joblib.load(os.path.join(MODELS_FOLDER_PATH, 'preprocessor.joblib'))
 forest_model = joblib.load(os.path.join(MODELS_FOLDER_PATH, 'random_forest_model.joblib'))
+ANN_model = joblib.load(os.path.join(MODELS_FOLDER_PATH, 'ANN_model.joblib'))
+XGBoost_model = joblib.load(os.path.join(MODELS_FOLDER_PATH, 'XGBoost_model.joblib'))
+

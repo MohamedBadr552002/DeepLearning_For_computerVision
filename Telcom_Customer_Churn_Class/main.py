@@ -2,7 +2,7 @@ from fastapi import FastAPI, HTTPException, Depends
 from fastapi.security import APIKeyHeader
 from fastapi.middleware.cors import CORSMiddleware
 from utils.interface import predict_new
-from utils.config import APP_NAME, VERSION, SECRET_KEY_TOKEN, preprocessor, forest_model
+from utils.config import APP_NAME, VERSION, SECRET_KEY_TOKEN, preprocessor, forest_model, XGBoost_model, ANN_model
 from utils.customdata import CustomData
 
 
@@ -28,10 +28,27 @@ async def verify_api_key(api_key: str=Depends(api_key_header)):
     return api_key
 
 
-@app.post("/predict_churn")
-async def predict_churn(customer_data: CustomData, api_key: str=Depends(verify_api_key)) -> dict:
+@app.post("/RandomForest")
+async def RF_predict_churn(customer_data: CustomData, api_key: str=Depends(verify_api_key)) -> dict:
     try:
         result = predict_new(data=customer_data, preprocessor=preprocessor, model=forest_model)
+        return result
+    except Exception as e:
+        raise HTTPException(status_code=403, detail=str(e))
+
+
+@app.post("/xgboost")
+async def xg_predict_churn(customer_data: CustomData, api_key: str=Depends(verify_api_key)) -> dict:
+    try:
+        result = predict_new(data=customer_data, preprocessor=preprocessor, model=XGBoost_model)
+        return result
+    except Exception as e:
+        raise HTTPException(status_code=403, detail=str(e))
+    
+@app.post("/ANN")
+async def ANN_predict_churn(customer_data: CustomData, api_key: str=Depends(verify_api_key)) -> dict:
+    try:
+        result = predict_new(data=customer_data, preprocessor=preprocessor, model=ANN_model)
         return result
     except Exception as e:
         raise HTTPException(status_code=403, detail=str(e))
